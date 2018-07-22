@@ -1,3 +1,4 @@
+import java.util.Optional;
 import java.util.Scanner;
 
 public class TicTacToe {
@@ -18,7 +19,7 @@ public class TicTacToe {
 
     //The method get from the Input Stram the line number
     //and the column number of the next move
-    private int[] getCoord()
+    protected int[] getCoord()
     {
         int a=0,b=0;
         do{
@@ -30,7 +31,7 @@ public class TicTacToe {
         return new int[]{a,b};
     }
 
-    public void play()
+    public GameBoard.Mark play()
     {
         while( !board.isGameOver() )
         {
@@ -44,17 +45,21 @@ public class TicTacToe {
             }
         }
         sc.close();
+        System.out.println(board);
         if(board.isWinner(GameBoard.Mark.MARK_X))
         {
             System.out.println("Bravo "+player1);
+            return  GameBoard.Mark.MARK_X;
         }
         else if(board.isWinner(GameBoard.Mark.MARK_0))
         {
             System.out.println("Bravo "+player2);
+            return GameBoard.Mark.MARK_0;
         }
         else
         {
             System.out.println("Draw game");
+            return GameBoard.Mark.MARK_FREE;
         }
 
     }
